@@ -4,7 +4,6 @@ import pygame
 
 class Gui:
     PIECE_TYPE_NAME_TO_OBJ = {"check": Check, "queen": Queen, "rook": Rook, "bishop": Bishop, "knight": Knight, "pawn": Pawn}
-    HIGHLIGHTED_TEXTURE = pygame.image.load("./assets/square_of_selection.png")
 
     def __init__(self, screen: pygame.Surface, SQUARE_SIZE, board:Board, clock:pygame.time.Clock):
         self.screen = screen
@@ -13,7 +12,8 @@ class Gui:
         self.mouse_piece_holding = None #Piece
         self.need_screen_update = True #draw_board() will be performed only if it's True
         self.clock = clock
-        self.highlighted_cases = []
+        self.highlighted_moves = []
+        self.kill_cases = []
     
     def get_mouse_pos(self):
         mouse_pos = pygame.mouse.get_pos()
@@ -45,8 +45,8 @@ class Gui:
                 self.screen.blit(piece.texture, tuple([piece.pos[i]*self.SQUARE_SIZE[i] for i in range(len(piece.pos))]))
         
         #drawing highlighted cases
-        for pos in self.highlighted_cases:
-            self.screen.blit(self.HIGHLIGHTED_TEXTURE, pos)
+        for move in self.highlighted_moves:
+            self.screen.blit(move.texture, tuple([move.target[i]*self.SQUARE_SIZE[i] for i in range(2)]))
         
         #drawing holded piece
         if self.mouse_piece_holding:
@@ -80,11 +80,12 @@ class Gui:
         print("holding piece", self.mouse_piece_holding)
         self.need_screen_update = True
         if self.mouse_piece_holding:
-            for pos in self.mouse_piece_holding.get_moves_allowed(self.board):
-                self.highlighted_cases.append(tuple([pos[i]*self.SQUARE_SIZE[i] for i in range(2)]))
+            for move in self.mouse_piece_holding.get_moves_allowed(self.board):
+                self.highlighted_moves.append(move)
 
     def mouse_released(self):
-        self.highlighted_cases = []
+        self.highlighted_moves = []
+        self.kill_cases = []
         if self.mouse_piece_holding:
             mouse_pos = self.get_mouse_pos()
             self.board.move_piece(self.mouse_piece_holding, mouse_pos) #will perform movement only if allowed

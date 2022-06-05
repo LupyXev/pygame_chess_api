@@ -10,6 +10,27 @@ French pieces' name to english:
 - Cavalier: Knight
 - Pion: Pawn
 '''
+class Move:
+    FORBIDDEN_MOVE = 0
+    TO_EMPTY_MOVE = 1 #a move to a empty case
+    KILL_MOVE = 2
+    SPECIAL_MOVE = 3 #like for castle move
+    TEXTURES = {
+        TO_EMPTY_MOVE: image.load("./assets/square_of_highlight.png"),
+        KILL_MOVE: image.load("./assets/square_of_kill.png"),
+        SPECIAL_MOVE: image.load("./assets/square_of_highlight.png")
+    }
+    def __init__(self, type: int, target=None):
+        self.type = type
+        self.target = target
+    
+    @property
+    def allowed(self):
+        return self.type != self.FORBIDDEN_MOVE
+    
+    @property
+    def texture(self):
+        return self.TEXTURES[self.type]
 
 class Piece:
     WHITE_TEXTURE, BLACK_TEXTURE = None, None #will be used only in childs
@@ -26,60 +47,62 @@ class Piece:
     
     '''def get_distance(self, pos_to_study:tuple):
         return sqrt((self.pos[0] - pos_to_study[0])**2 + (self.pos[1] - pos_to_study[1])**2)'''
-    def case_allowed(self, case_pos, board): #returns allowed, collision
+    def case_allowed(self, case_pos, board): #returns move
         for c in case_pos:
             if c < 0 or c > 7:
-                return False, True
+                return Move(Move.FORBIDDEN_MOVE)
         
         if case_pos in board.pieces_pos:
             cur_piece = board.pieces_pos[case_pos]
             if cur_piece.color != self.color and cur_piece.invicible == False:
-                return True, True #there is collision
+                return Move(Move.KILL_MOVE, case_pos) #there is collision
             else:
-                return False, True #not allowed and collision
+                return Move(Move.FORBIDDEN_MOVE) #not allowed and collision
         else:
-            return True, False #no collision
+            return Move(Move.TO_EMPTY_MOVE, case_pos) #no collision
 
     def cases_allowed_around(self, board):
         cases_around_list = []
         for x in range(max(0, self.pos[0]-1), min(8, self.pos[0]+2)):
             for y in range(max(0, self.pos[1]-1), min(8, self.pos[1]+2)):
-                if self.case_allowed((x, y), board)[0]:
-                    cases_around_list.append((x, y))    
+                cur_move = self.case_allowed((x, y), board)
+                if cur_move.allowed:
+                    cases_around_list.append(cur_move)    
         return cases_around_list
     
     def cases_allowed_in_diagonals(self, board):
         cases_allowed_list = []
         for vector in self.DIAGONALS_VECTORS: #4 directions of diagonals
             cur_pos = tuple([self.pos[i] + vector[i] for i in range(2)])
-            allowing = self.case_allowed(cur_pos, board)
-            while allowing[0]: #move allowed
-                cases_allowed_list.append(cur_pos)
-                if allowing[1]: #has been collision last move
+            cur_move = self.case_allowed(cur_pos, board)
+            while cur_move.allowed: #move allowed
+                cases_allowed_list.append(cur_move)
+                if cur_move.type == cur_move.KILL_MOVE: #has been collision last move
                     break
                 cur_pos = tuple([cur_pos[i] + vector[i] for i in range(2)])
-                allowing = self.case_allowed(cur_pos, board)
+                cur_move = self.case_allowed(cur_pos, board)
         return cases_allowed_list
     
     def cases_allowed_in_line(self, board): #like for rooks
         cases_allowed_list = []
         for vector in self.LINES_VECTORS: #4 directions of lines
             cur_pos = tuple([self.pos[i] + vector[i] for i in range(2)])
-            allowing = self.case_allowed(cur_pos, board)
-            while allowing[0]: #move allowed
-                cases_allowed_list.append(cur_pos)
-                if allowing[1]: #has been collision last move
+            cur_move = self.case_allowed(cur_pos, board)
+            while cur_move.allowed: #move allowed
+                cases_allowed_list.append(cur_move)
+                if cur_move.type == cur_move.KILL_MOVE: #has been collision last move
                     break
                 cur_pos = tuple([cur_pos[i] + vector[i] for i in range(2)])
-                allowing = self.case_allowed(cur_pos, board)
+                cur_move = self.case_allowed(cur_pos, board)
         return cases_allowed_list
     
     def cases_allowed_for_knight(self, board):
         allowed_moves = []
         for vector in self.KNIGHT_VECTOR:
             cur_pos = tuple([self.pos[i] + vector[i] for i in range(2)])
-            if self.case_allowed(cur_pos, board)[0]:
-                allowed_moves.append(cur_pos)
+            cur_move = self.case_allowed(cur_pos, board)
+            if cur_move.allowed:
+                allowed_moves.append(cur_move)
         return allowed_moves
 
     @property
@@ -131,15 +154,22 @@ class Pawn(Piece):
     
     def get_moves_allowed(self, board): #returns every move allowed
         allowed_moves = []
-        in_front_case_pos = (self.pos[0], self.pos[1] + 1*self.color + (self.color - 1))
-        in_front_case_allowing = self.case_allowed(in_front_case_pos, board)
-        if in_front_case_allowing[0]:
-            allowed_moves.append(in_front_case_pos)
-            if not in_front_case_allowing[1] and not self.has_already_moved:
+        in_front_y = self.pos[1] + 1*self.color + (self.color - 1)
+        in_front_case_pos = (self.pos[0], in_front_y)
+        in_front_move = self.case_allowed(in_front_case_pos, board)
+        if in_front_move.allowed and in_front_move.type != in_front_move.KILL_MOVE:
+            allowed_moves.append(in_front_move)
+            if in_front_move.type != in_front_move.KILL_MOVE and not self.has_already_moved:
                 #it could try to go 2 cases in front of itself
-                two_cases_in_front = (in_front_case_pos[0], in_front_case_pos[1] + 1*self.color + (self.color - 1))
-                if self.case_allowed(two_cases_in_front, board)[0]:
-                    allowed_moves.append(two_cases_in_front)
+                two_cases_in_front_pos = (in_front_case_pos[0], in_front_y + 1*self.color + (self.color - 1))
+                two_cases_move = self.case_allowed(two_cases_in_front_pos, board)
+                if two_cases_move.allowed:
+                    allowed_moves.append(two_cases_move)
+        
+        for x in range(self.pos[0]-1, self.pos[0]+2, 2):#x-1 and x+1
+            cur_move = self.case_allowed((x, in_front_y), board)
+            if cur_move.type == cur_move.KILL_MOVE:
+                allowed_moves.append(cur_move)
         return allowed_moves
 
 class Case:
@@ -177,8 +207,9 @@ class Board:
     
     def is_allowed_move(self, piece: Piece, future_pos:tuple):
         moves_allowed = piece.get_moves_allowed(self)
-        if future_pos in moves_allowed:
-            return True
+        for move in moves_allowed:
+            if move.target == future_pos:
+                return True
         return False
         
     def move_piece(self, piece, pos:tuple):
