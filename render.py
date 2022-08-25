@@ -1,6 +1,7 @@
 from api import *
 from os import listdir
 import pygame
+from time import time #for tests
 
 class Gui:
     PIECE_TYPE_NAME_TO_OBJ = {"check": Check, "queen": Queen, "rook": Rook, "bishop": Bishop, "knight": Knight, "pawn": Pawn}
@@ -54,6 +55,12 @@ class Gui:
             self.screen.blit(self.mouse_piece_holding.texture, tuple([mouse_pos[i] - self.SQUARE_SIZE[i]/2 for i in range(2)]))
         else:
             self.need_screen_update = False #if we are holding something we will update next tick
+        
+        '''#test
+        for color_moves in self.board.possible_moves:
+            for move in color_moves:
+                self.screen.blit(move.texture, tuple([move.target[i]*self.SQUARE_SIZE[i] for i in range(2)]))'''
+        
         pygame.display.update()
 
     def generate_textures(self):
@@ -77,10 +84,16 @@ class Gui:
     def mouse_left_clicked(self):
         mouse_pos = self.get_mouse_pos()
         self.mouse_piece_holding = self.board.get_piece_by_pos(mouse_pos)
-        print("holding piece", self.mouse_piece_holding)
+        #print("holding piece", self.mouse_piece_holding)
         self.need_screen_update = True
         if self.mouse_piece_holding:
-            for move in self.mouse_piece_holding.get_moves_allowed(self.board):
+            #print("holding at", self.mouse_piece_holding.pos)
+            t_start = time()
+            moves_allowed = self.mouse_piece_holding.get_moves_allowed()
+            print("loaded moves allowed in", round((time() - t_start)*1000, 2), "ms")
+            for move in moves_allowed:
+                if move.type == 0:
+                    print(move)
                 self.highlighted_moves.append(move)
 
     def mouse_released(self):
