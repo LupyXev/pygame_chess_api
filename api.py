@@ -303,6 +303,7 @@ class Board:
         self.hypothesis_board = False
         self.cur_color_turn = cur_color_turn
         self.cur_color_turn_in_check = False #will be overidden in the hypothesis build if it is a hypothesis
+        self.game_ended = False
 
         if pieces_pos is None:
             self.pieces_pos = {}
@@ -341,10 +342,19 @@ class Board:
                 return True, move
         return False, None
     
-    def new_turn(self):
+    def new_turn(self): #returns if there is a checkmate
         self.cur_color_turn = 1 - self.cur_color_turn
         self.cur_color_turn_in_check = self.check_pieces[self.cur_color_turn].in_check_situation()
         if self.cur_color_turn_in_check: print("in check situation")
+        #we check if it is a checkmate situation
+        for piece in tuple(self.pieces_pos.values()):
+            if piece.color == self.cur_color_turn:
+                if len(piece.get_moves_allowed()) > 0:
+                    return False
+        #no piece can move, this is a checkmate situation
+        print(f"checkmate! color {1 - self.cur_color_turn} won!")
+        self.game_ended = True
+        return True
 
     def move_piece(self, piece, pos:tuple, skip_allowed_verif=False, call_new_turn=True):
         if not skip_allowed_verif:
@@ -377,7 +387,7 @@ class Board:
                 print("WARNING: overriding an existing piece pos", pos, "for piece obj", piece)
             self.pieces_pos[pos] = piece
             
-            if call_new_turn: self.new_turn()
+            if call_new_turn: is_checkmate = self.new_turn()
             return pos
         return None
     

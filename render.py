@@ -81,6 +81,10 @@ class Gui:
         self.need_screen_update = True
 
     def mouse_left_clicked(self):
+        if self.board.game_ended:
+            print("Game ended, you can close the window")
+            return
+
         mouse_pos = self.get_mouse_pos()
         piece_to_hold = self.board.get_piece_by_pos(mouse_pos)
         if piece_to_hold.color != self.board.cur_color_turn: return
