@@ -1,6 +1,8 @@
 import pygame
 from api import *
 from render import *
+import sys
+sys.setrecursionlimit(100) #TODO: remove this
 
 pygame.init()
 FPS = 60

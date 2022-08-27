@@ -48,7 +48,10 @@ class Gui:
         #drawing highlighted cases
         for move in self.highlighted_moves:
             self.screen.blit(move.texture, tuple([move.target[i]*self.SQUARE_SIZE[i] for i in range(2)]))
-        
+        if self.board.cur_color_turn_in_check:
+            check_piece = self.board.check_pieces[self.board.cur_color_turn]
+            self.screen.blit(check_piece.IN_CHECK_TEXTURE, tuple([check_piece.pos[i]*self.SQUARE_SIZE[i] for i in range(2)]))
+
         #drawing holded piece
         if self.mouse_piece_holding:
             mouse_pos = pygame.mouse.get_pos()
@@ -56,10 +59,6 @@ class Gui:
         else:
             self.need_screen_update = False #if we are holding something we will update next tick
         
-        '''#test
-        for color_moves in self.board.possible_moves:
-            for move in color_moves:
-                self.screen.blit(move.texture, tuple([move.target[i]*self.SQUARE_SIZE[i] for i in range(2)]))'''
         
         pygame.display.update()
 
@@ -83,16 +82,17 @@ class Gui:
 
     def mouse_left_clicked(self):
         mouse_pos = self.get_mouse_pos()
-        self.mouse_piece_holding = self.board.get_piece_by_pos(mouse_pos)
-        #print("holding piece", self.mouse_piece_holding)
+        piece_to_hold = self.board.get_piece_by_pos(mouse_pos)
+        if piece_to_hold.color != self.board.cur_color_turn: return
+
+        self.mouse_piece_holding = piece_to_hold
         self.need_screen_update = True
         if self.mouse_piece_holding:
-            #print("holding at", self.mouse_piece_holding.pos)
             t_start = time()
             moves_allowed = self.mouse_piece_holding.get_moves_allowed()
             print("loaded moves allowed in", round((time() - t_start)*1000, 2), "ms")
             for move in moves_allowed:
-                if move.type == 0:
+                if move.type == 4: #should not happen
                     print(move)
                 self.highlighted_moves.append(move)
 
