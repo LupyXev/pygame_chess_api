@@ -13,20 +13,34 @@ French pieces' name to english:
 
 
 class Move:
+    '''Moves will be initiated when getting piece's allowed moves, they can also be used as argument to move a piece
+    There is different types of moves'''
     FORBIDDEN_MOVE = 0
-    TO_EMPTY_MOVE = 1 #a move to a empty case
+    ''''''
+    TO_EMPTY_MOVE = 1 
+    '''A move to a empty case'''
     KILL_MOVE = 2
+    '''A move that will kill an opponent's piece'''
     SPECIAL_MOVE = 3 #like for castling move
-    OVER_CHECK_MOVE = 4 #used to detect check situations (move where you'll kill a Check piece)
+    '''Ex: for a castling move'''
+    OVER_CHECK_MOVE = 4 
+    '''Used to detect check situations (move where you'll kill a Check piece)'''
     LEADING_TO_CHECK_SITUATION_MOVE = 5
+    '''Used to detect check situations (move that will conduct to a Check of its own color, so it's forbidden)'''
     TEXTURES = {} #will be written by render.py
     CASTLING_TYPE = 1
+    '''For SPECIAL_MOVE'''
     EN_PASSANT_TYPE = 2
+    '''For SPECIAL_MOVE'''
     def __init__(self, type: int, piece, target:tuple, special_type=None):
         self.type = type
+        '''Move's type (int)'''
         self.piece = piece
+        '''Move's piece'''
         self.target = target #will be (-1, -1) if type is FORBIDDEN_MOVE
+        '''Move's position target (tuple)'''
         self.special_type = special_type
+        '''Special type if type==SPECIAL_MOVE'''
     
     def copy(self, new_piece):
         return self.__class__(self.type, new_piece, self.target, self.special_type)
@@ -44,6 +58,7 @@ class Move:
 
 
 class Piece:
+    '''Base class for pieces'''
     WHITE_TEXTURE, BLACK_TEXTURE = None, None #will be used only in childs
     WHITE, BLACK = 0, 1
     INT_COLOR_TO_TEXT = {0: "White", 1: "Black"}
@@ -53,15 +68,20 @@ class Piece:
     COLLISION_MOVES = (Move.KILL_MOVE, Move.OVER_CHECK_MOVE, Move.FORBIDDEN_MOVE)
     def __init__(self, color: int, pos: tuple, board):
         self.color = color
+        ''''''
         self.pos = pos
+        ''''''
         self.board = board
+        ''''''
         self.invicible = False #True value will be considered as Check piece
         self.has_already_moved = False
     
-    def get_moves_allowed(self, skip_check_verification=False):
+    def get_moves_allowed(self, skip_check_verification=False) -> list:
+        '''**To get every piece's moves allowed** with the current Board configuration (moves allowed this current turn)'''
         return [] #will be overrided in children
     
-    def case_allowed(self, case_pos, this_move_can_kill=True, skip_check_verification=False): #returns move
+    def case_allowed(self, case_pos:tuple, this_move_can_kill=True, skip_check_verification=False) -> Move: #returns move
+        '''To test if this specific case is currently allowed for the piece'''
         for c in case_pos:
             if c < 0 or c > 7:
                 return Move(Move.FORBIDDEN_MOVE, self, (-1, -1))
@@ -138,7 +158,8 @@ class Piece:
                 allowed_moves.append(cur_move)
         return allowed_moves
     
-    def move(self, pos_or_move:tuple or Move, skip_allowed_verif=False, call_new_turn=True):
+    def move(self, pos_or_move:tuple or Move, skip_allowed_verif=False, call_new_turn=True) -> None or tuple:
+        '''To move the piece to a position returns the target position if it worked, otherwise it returns None'''
         return self.board.move_piece(self, pos_or_move, skip_allowed_verif=skip_allowed_verif, call_new_turn=call_new_turn)
 
     @property
@@ -152,6 +173,7 @@ class Piece:
         return f"{self.INT_COLOR_TO_TEXT[self.color]} {self.NAME} at pos {self.pos}"
 
 class Rook(Piece):
+    '''Class for Rooks, please refer to :class:`Piece`'''
     NAME = "Rook"
     def __init__(self, color, pos: tuple, board):
         super().__init__(color, pos, board)
@@ -160,6 +182,7 @@ class Rook(Piece):
         return self.cases_allowed_in_line(skip_check_verification)
 
 class Check(Piece):
+    '''Class for Checks, please refer to :class:`Piece`'''
     NAME = "Check"
     IN_CHECK_TEXTURE = None
     def __init__(self, color, pos: tuple, board):
@@ -167,7 +190,8 @@ class Check(Piece):
         self.invicible = True
         self.currently_in_check = False
     
-    def in_check_situation(self, hypothesis=None):
+    def in_check_situation(self, hypothesis=None) -> bool:
+        '''Detects if this Check is "in check"'''
         if hypothesis:
             #we create hypothesis to know if some piece could "kill" this Check piece, meaning that we would be in a check situation
             board = hypothesis
@@ -222,6 +246,7 @@ class Check(Piece):
         return moves_around   
 
 class Queen(Piece):
+    '''Class for Queens, please refer to :class:`Piece`'''
     NAME = "Queen"
     def __init__(self, color, pos: tuple, board):
         super().__init__(color, pos, board)
@@ -230,6 +255,7 @@ class Queen(Piece):
         return self.cases_allowed_around(skip_check_verification) + self.cases_allowed_in_diagonals(skip_check_verification) + self.cases_allowed_in_line(skip_check_verification) #may be duplications but we don't matter
 
 class Bishop(Piece):
+    '''Class for Bishops, please refer to :class:`Piece`'''
     NAME = "Bishop"
     def __init__(self, color, pos: tuple, board):
         super().__init__(color, pos, board)
@@ -238,6 +264,7 @@ class Bishop(Piece):
         return self.cases_allowed_in_diagonals(skip_check_verification)
     
 class Knight(Piece):
+    '''Class for Knights, please refer to :class:`Piece`'''
     NAME = "Knight"
     def __init__(self, color, pos: tuple, board):
         super().__init__(color, pos, board)
@@ -246,6 +273,7 @@ class Knight(Piece):
         return self.cases_allowed_for_knight(skip_check_verification)
 
 class Pawn(Piece):
+    '''Class for Pawns, please refer to :class:`Piece`'''
     NAME = "Pawn"
     def __init__(self, color, pos: tuple, board):
         super().__init__(color, pos, board)
@@ -292,6 +320,7 @@ class Case:
         self.type = square_type
 
 class Board:
+    '''Represents the whole game board, containing pieces and data about current and past turns'''
     #we'll always consider that white starts in the bottom screen and black in the upper, so the white knight will be (4, 8) and the black one at (4, 0)
     BACK_LINE_INIT_POSITIONS = {(0, 0): Rook, (1, 0): Knight, (2, 0): Bishop,
         (3, 0): Queen, (4, 0): Check, (5, 0): Bishop,
@@ -300,14 +329,23 @@ class Board:
     def __init__(self, pieces_by_pos=None, move_history=[], cur_color_turn=Case.WHITE, verbose=1):
         self.verbose = verbose
         self.move_history = move_history
+        ''''''
         self.hypothesis_board = False
         self.cur_color_turn = cur_color_turn
+        ''''''
         self.cur_color_turn_in_check = False #will be overidden in the hypothesis build if it is a hypothesis
+        '''If the current playing color is in check'''
         self.game_ended = False
+        ''''''
         self.winner = False
+        ''''''
+
+        self.pieces_by_color = [[], []] #will be overidden in _init_vars
+        '''2-dimensional list representing pieces by color (self.pieces_by_color[0] for white pieces and self.pieces_by_color[0] for black pieces)'''
 
         if pieces_by_pos is None:
             self.pieces_by_pos = {}
+            '''Dict representing pieces, keys are positions (tuple) and values are pieces (:class:`Piece`)'''
             #inits pieces pos
             for color in range(2):
                 #adding the back line
@@ -333,7 +371,6 @@ class Board:
             if piece.invicible:
                 self.check_pieces[piece.color] = piece
         
-        self.pieces_by_color = [[], []]
         for piece in tuple(self.pieces_by_pos.values()):
             self.pieces_by_color[piece.color].append(piece)
 
@@ -366,7 +403,8 @@ class Board:
         print(f"checkmate! color {self.winner} won!")
         return True
 
-    def move_piece(self, piece, pos_or_move:tuple or Move, skip_allowed_verif=False, call_new_turn=True):
+    def move_piece(self, piece, pos_or_move:tuple or Move, skip_allowed_verif=False, call_new_turn=True) -> None or tuple:
+        '''Enables you to move a piece instead of doing it with the :class:`Piece` obj, returns None if the move isn't allowed'''
         pos = pos_or_move
         if type(pos_or_move) == Move:
             pos = pos_or_move.target
@@ -412,6 +450,8 @@ class Board:
             return None
     
     def create_hypothesis_board(self, pieces_with_pos_to_change={}):
+        '''| Allows you to create hypothesis boards, an independent copy of the current Board
+        | Returns another Board obj'''
         if self.hypothesis_board: print("Warning: creating a hypothesis from another hypothesis")
 
         hypo_board = Board(pieces_by_pos={}, cur_color_turn=self.cur_color_turn, verbose=self.verbose)
