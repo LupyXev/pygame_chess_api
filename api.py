@@ -51,6 +51,7 @@ class Move:
 class Piece:
     WHITE_TEXTURE, BLACK_TEXTURE = None, None #will be used only in childs
     WHITE, BLACK = 0, 1
+    INT_COLOR_TO_TEXT = {0: "White", 1: "Black"}
     DIAGONALS_VECTORS = ((-1, -1), (1, -1), (-1, 1), (1, 1))
     LINES_VECTORS = ((0, -1), (0, 1), (-1, 0), (1, 0))
     KNIGHT_VECTOR = ((1, -2), (2, -1), (2, 1), (1, 2), (-1, 2), (-2, 1), (-2, -1), (-1, -2))
@@ -80,8 +81,8 @@ class Piece:
                 return Move(Move.LEADING_TO_CHECK_SITUATION_MOVE, self, (-1, -1)) #not allowed because would be in check situation
             return None
 
-        if case_pos in self.board.pieces_pos:
-            cur_piece = self.board.pieces_pos[case_pos]
+        if case_pos in self.board.pieces_by_pos:
+            cur_piece = self.board.pieces_by_pos[case_pos]
             if cur_piece.color != self.color and this_move_can_kill:
                 if cur_piece.invicible == False: #invicible means that this is a Check piece
                     verification = verify_check(skip_check_verification)
@@ -141,6 +142,9 @@ class Piece:
             if cur_move.allowed:
                 allowed_moves.append(cur_move)
         return allowed_moves
+    
+    def move(self, pos_or_move:tuple or Move, skip_allowed_verif=False, call_new_turn=True):
+        return self.board.move_piece(self, pos_or_move, skip_allowed_verif=skip_allowed_verif, call_new_turn=call_new_turn)
 
     @property
     def texture(self):
@@ -150,7 +154,7 @@ class Piece:
         return self.__class__(self.color, self.pos, new_board)
     
     def __str__(self):
-        return f"{self.NAME} color {self.color} at pos {self.pos}"
+        return f"{self.INT_COLOR_TO_TEXT[self.color]} {self.NAME} at pos {self.pos}"
 
 class Rook(Piece):
     NAME = "Rook"
@@ -179,7 +183,7 @@ class Check(Piece):
         
         if self.board.hypothesis_board:print("in_check_situation with self hypothesis board")
         
-        for piece in board.pieces_pos.values():
+        for piece in board.pieces_by_pos.values():
             if piece.color != self.color:
                 if piece.invicible: #to avoid recursive erros
                     if sqrt((self_in_hypothesis.pos[0] - piece.pos[0])**2 + (self_in_hypothesis.pos[1] - piece.pos[1])**2) < 2:
@@ -200,10 +204,10 @@ class Check(Piece):
             little_castling_free_pos_needed = [(self.pos[0]+i, self.pos[1]) for i in range(1, 3)]
             pos_little_castling_are_free = True
             for cur_pos in little_castling_free_pos_needed:
-                if cur_pos in self.board.pieces_pos or (not skip_check_verification and self.in_check_situation(self.board.create_hypothesis_board({self:cur_pos}))):
+                if cur_pos in self.board.pieces_by_pos or (not skip_check_verification and self.in_check_situation(self.board.create_hypothesis_board({self:cur_pos}))):
                     pos_little_castling_are_free = False
             
-            piece_at_rook_needed_pos = self.board.pieces_pos[(self.pos[0]+3, self.pos[1])] if (self.pos[0]+3, self.pos[1]) in self.board.pieces_pos else None
+            piece_at_rook_needed_pos = self.board.pieces_by_pos[(self.pos[0]+3, self.pos[1])] if (self.pos[0]+3, self.pos[1]) in self.board.pieces_by_pos else None
             if pos_little_castling_are_free and type(piece_at_rook_needed_pos) == Rook and not piece_at_rook_needed_pos.has_already_moved:
                 if skip_check_verification or not self.in_check_situation(self.board.create_hypothesis_board({self:(self.pos[0]+2, self.pos[1])})):
                     moves_around.append(Move(Move.SPECIAL_MOVE, self, (self.pos[0]+2, self.pos[1]), Move.CASTLING_TYPE))
@@ -212,10 +216,10 @@ class Check(Piece):
             big_castling_free_pos_needed = [(self.pos[0]-i, self.pos[1]) for i in range(1, 4)]
             pos_big_castling_are_free = True
             for cur_pos in big_castling_free_pos_needed:
-                if cur_pos in self.board.pieces_pos or (not skip_check_verification and self.in_check_situation(self.board.create_hypothesis_board({self:cur_pos}))):
+                if cur_pos in self.board.pieces_by_pos or (not skip_check_verification and self.in_check_situation(self.board.create_hypothesis_board({self:cur_pos}))):
                     pos_big_castling_are_free = False
             
-            piece_at_rook_needed_pos = self.board.pieces_pos[(self.pos[0]-4, self.pos[1])] if (self.pos[0]-4, self.pos[1]) in self.board.pieces_pos else None
+            piece_at_rook_needed_pos = self.board.pieces_by_pos[(self.pos[0]-4, self.pos[1])] if (self.pos[0]-4, self.pos[1]) in self.board.pieces_by_pos else None
             if pos_big_castling_are_free and type(piece_at_rook_needed_pos) == Rook and not piece_at_rook_needed_pos.has_already_moved:
                 if skip_check_verification or not self.in_check_situation(self.board.create_hypothesis_board({self:(self.pos[0]-2, self.pos[1])})):
                     moves_around.append(Move(Move.SPECIAL_MOVE, self, (self.pos[0]-2, self.pos[1]), Move.CASTLING_TYPE))
@@ -298,40 +302,50 @@ class Board:
         (3, 0): Queen, (4, 0): Check, (5, 0): Bishop,
         (6, 0): Knight, (7, 0): Rook} #uses 0 as y back line
     
-    def __init__(self, pieces_pos=None, move_history=[], cur_color_turn=Case.WHITE):
+    def __init__(self, pieces_by_pos=None, move_history=[], cur_color_turn=Case.WHITE, verbose=1):
+        self.verbose = verbose
         self.move_history = move_history
         self.hypothesis_board = False
         self.cur_color_turn = cur_color_turn
         self.cur_color_turn_in_check = False #will be overidden in the hypothesis build if it is a hypothesis
         self.game_ended = False
+        self.winner = False
 
-        if pieces_pos is None:
-            self.pieces_pos = {}
+        if pieces_by_pos is None:
+            self.pieces_by_pos = {}
             #inits pieces pos
             for color in range(2):
                 #adding the back line
                 for pos_vector, type in self.BACK_LINE_INIT_POSITIONS.items():
                     pos = (pos_vector[0], (1-color)*7)
-                    self.pieces_pos[pos] = type(color, pos, self)
+                    self.pieces_by_pos[pos] = type(color, pos, self)
                 #adding the front line
                 for x in range(8):
                     pos = (x, (1-color)*6 + 1*color)
                     piece = Pawn(color, pos, self)
-                    self.pieces_pos[pos] = piece
-            
-            self.check_pieces = [None, None]
-            for piece in tuple(self.pieces_pos.values()):
-                if piece.invicible:
-                    self.check_pieces[piece.color] = piece
+                    self.pieces_by_pos[pos] = piece
+
+            self._init_vars()
 
         else:
-            self.pieces_pos = pieces_pos
+            self.pieces_by_pos = pieces_by_pos
             self.hypothesis_board = True
+    
+    def _init_vars(self):
+        '''Used to init self.check_pieces and self.pieces_by_color (used when initiating a new obj or hypothesis)'''
+        self.check_pieces = [None, None]
+        for piece in tuple(self.pieces_by_pos.values()):
+            if piece.invicible:
+                self.check_pieces[piece.color] = piece
         
+        self.pieces_by_color = [[], []]
+        for piece in tuple(self.pieces_by_pos.values()):
+            self.pieces_by_color[piece.color].append(piece)
+
             
     def get_piece_by_pos(self, pos):
-        if pos in self.pieces_pos:
-            return self.pieces_pos[pos]
+        if pos in self.pieces_by_pos:
+            return self.pieces_by_pos[pos]
         else:
             return None
     
@@ -342,21 +356,26 @@ class Board:
                 return True, move
         return False, None
     
-    def new_turn(self): #returns if there is a checkmate
+    def _new_turn(self): #returns if there is a checkmate
         self.cur_color_turn = 1 - self.cur_color_turn
         self.cur_color_turn_in_check = self.check_pieces[self.cur_color_turn].in_check_situation()
-        if self.cur_color_turn_in_check: print("in check situation")
+        if self.cur_color_turn_in_check: print(f"{self.check_pieces[self.cur_color_turn]} is in check situation")
         #we check if it is a checkmate situation
-        for piece in tuple(self.pieces_pos.values()):
+        for piece in tuple(self.pieces_by_pos.values()):
             if piece.color == self.cur_color_turn:
                 if len(piece.get_moves_allowed()) > 0:
                     return False
         #no piece can move, this is a checkmate situation
-        print(f"checkmate! color {1 - self.cur_color_turn} won!")
         self.game_ended = True
+        self.winner = 1 - self.cur_color_turn
+        print(f"checkmate! color {self.winner} won!")
         return True
 
-    def move_piece(self, piece, pos:tuple, skip_allowed_verif=False, call_new_turn=True):
+    def move_piece(self, piece, pos_or_move:tuple or Move, skip_allowed_verif=False, call_new_turn=True):
+        pos = pos_or_move
+        if type(pos_or_move) == Move:
+            pos = pos_or_move.target
+        
         if not skip_allowed_verif:
             allowed, move = self.is_allowed_move(piece, pos)
             if self.cur_color_turn != piece.color:
@@ -369,41 +388,47 @@ class Board:
         if allowed:
             ini_pos = piece.pos
             self.move_history.append({"ini_pos": ini_pos, "move": move, "piece": piece, "has_already_moved": piece.has_already_moved})
-            self.pieces_pos.pop(piece.pos)
+            self.pieces_by_pos.pop(piece.pos)
             piece.pos = pos
             piece.has_already_moved = True
             if move.special_type == move.CASTLING_TYPE:
                 #moving rook
                 little_castling = True if pos == (ini_pos[0]+2, ini_pos[1]) else False
-                rook = self.pieces_pos.pop((pos[0]+1, pos[1])) if little_castling else self.pieces_pos.pop((pos[0]-2, pos[1]))
+                rook = self.pieces_by_pos.pop((pos[0]+1, pos[1])) if little_castling else self.pieces_by_pos.pop((pos[0]-2, pos[1]))
                 new_rook_pos = (pos[0]-1, pos[1]) if little_castling else (pos[0]+1, pos[1])
                 rook.pos = new_rook_pos
-                self.pieces_pos[new_rook_pos] = rook
+                self.pieces_by_pos[new_rook_pos] = rook
             elif move.special_type == move.EN_PASSANT_TYPE:
                 #killing pawn
-                self.pieces_pos.pop((pos[0], ini_pos[1]))
+                self.pieces_by_pos.pop((pos[0], ini_pos[1]))
 
-            if pos in self.pieces_pos and move.type == move.TO_EMPTY_MOVE:
-                print("WARNING: overriding an existing piece pos", pos, "for piece obj", piece)
-            self.pieces_pos[pos] = piece
+            if pos in self.pieces_by_pos:
+                if move.type == move.TO_EMPTY_MOVE:
+                    print("WARNING: overriding an existing piece pos", pos, "for piece obj", piece)
+                else:
+                    self.pieces_by_color[self.pieces_by_pos[pos].color].remove(self.pieces_by_pos[pos])
+                
+            self.pieces_by_pos[pos] = piece
             
-            if call_new_turn: is_checkmate = self.new_turn()
+            if call_new_turn: is_checkmate = self._new_turn()
             return pos
-        return None
+        else:
+            if self.verbose >= 1: print(f"Move of piece {piece} to {pos} isn't allowed")
+            return None
     
     def create_hypothesis_board(self, pieces_with_pos_to_change={}):
         if self.hypothesis_board: print("Warning: creating a hypothesis from another hypothesis")
 
-        hypo_board = Board(pieces_pos={}, cur_color_turn=self.cur_color_turn)
+        hypo_board = Board(pieces_by_pos={}, cur_color_turn=self.cur_color_turn, verbose=self.verbose)
 
         real_piece_to_hypothesis_piece = {}
-        #copying pieces_pos
-        pieces_pos = {}
-        for pos, piece in self.pieces_pos.items():
+        #copying pieces_by_pos
+        pieces_by_pos = {}
+        for pos, piece in self.pieces_by_pos.items():
             piece_copy = piece.copy(hypo_board)
             real_piece_to_hypothesis_piece[piece] = piece_copy
-            pieces_pos[pos] = piece_copy
-        hypo_board.pieces_pos = pieces_pos
+            pieces_by_pos[pos] = piece_copy
+        hypo_board.pieces_by_pos = pieces_by_pos
 
         #copying moves_history
         move_history = []
@@ -421,11 +446,7 @@ class Board:
             })
         hypo_board.move_history = move_history
         
-        hypo_board.check_pieces = [None, None]
-        for piece in tuple(hypo_board.pieces_pos.values()):
-            if piece.invicible:
-                hypo_board.check_pieces[piece.color] = piece
-        hypo_board.cur_color_turn_in_check = False
+        hypo_board._init_vars()
         
         for piece, new_pos in pieces_with_pos_to_change.items():
             hypo_board.move_piece(real_piece_to_hypothesis_piece[piece], new_pos, skip_allowed_verif=True, call_new_turn=False)
