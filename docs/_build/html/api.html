@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
@@ -12,10 +12,10 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="pygame_chess_api" href="modules.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -33,11 +33,11 @@
           <div class="body" role="main">
             
   <section id="module-api">
-<span id="api-module"></span><h1>api module<a class="headerlink" href="#module-api" title="Permalink to this headline">¶</a></h1>
+<span id="api-module"></span><h1>api module<a class="headerlink" href="#module-api" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="api.Bishop">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.</span></span><span class="sig-name descname"><span class="pre">Bishop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">board</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.Bishop" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#api.Piece" title="api.Piece"><code class="xref py py-class docutils literal notranslate"><span class="pre">api.Piece</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#api.Piece" title="api.Piece"><code class="xref py py-class docutils literal notranslate"><span class="pre">Piece</span></code></a></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="api.Bishop.NAME">
 <span class="sig-name descname"><span class="pre">NAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Bishop'</span></em><a class="headerlink" href="#api.Bishop.NAME" title="Permalink to this definition">¶</a></dt>
@@ -71,7 +71,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="api.Board.is_allowed_move">
-<span class="sig-name descname"><span class="pre">is_allowed_move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">piece</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#api.Piece" title="api.Piece"><span class="pre">api.Piece</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">future_pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.Board.is_allowed_move" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">is_allowed_move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">piece</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#api.Piece" title="api.Piece"><span class="pre">Piece</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">future_pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.Board.is_allowed_move" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -110,7 +110,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="api.Check">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.</span></span><span class="sig-name descname"><span class="pre">Check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">board</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.Check" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#api.Piece" title="api.Piece"><code class="xref py py-class docutils literal notranslate"><span class="pre">api.Piece</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#api.Piece" title="api.Piece"><code class="xref py py-class docutils literal notranslate"><span class="pre">Piece</span></code></a></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="api.Check.IN_CHECK_TEXTURE">
 <span class="sig-name descname"><span class="pre">IN_CHECK_TEXTURE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#api.Check.IN_CHECK_TEXTURE" title="Permalink to this definition">¶</a></dt>
@@ -136,7 +136,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="api.Knight">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.</span></span><span class="sig-name descname"><span class="pre">Knight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">board</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.Knight" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#api.Piece" title="api.Piece"><code class="xref py py-class docutils literal notranslate"><span class="pre">api.Piece</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#api.Piece" title="api.Piece"><code class="xref py py-class docutils literal notranslate"><span class="pre">Piece</span></code></a></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="api.Knight.NAME">
 <span class="sig-name descname"><span class="pre">NAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Knight'</span></em><a class="headerlink" href="#api.Knight.NAME" title="Permalink to this definition">¶</a></dt>
@@ -218,7 +218,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="api.Pawn">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.</span></span><span class="sig-name descname"><span class="pre">Pawn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">board</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.Pawn" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#api.Piece" title="api.Piece"><code class="xref py py-class docutils literal notranslate"><span class="pre">api.Piece</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#api.Piece" title="api.Piece"><code class="xref py py-class docutils literal notranslate"><span class="pre">Piece</span></code></a></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="api.Pawn.NAME">
 <span class="sig-name descname"><span class="pre">NAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Pawn'</span></em><a class="headerlink" href="#api.Pawn.NAME" title="Permalink to this definition">¶</a></dt>
@@ -330,7 +330,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="api.Queen">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.</span></span><span class="sig-name descname"><span class="pre">Queen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">board</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.Queen" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#api.Piece" title="api.Piece"><code class="xref py py-class docutils literal notranslate"><span class="pre">api.Piece</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#api.Piece" title="api.Piece"><code class="xref py py-class docutils literal notranslate"><span class="pre">Piece</span></code></a></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="api.Queen.NAME">
 <span class="sig-name descname"><span class="pre">NAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Queen'</span></em><a class="headerlink" href="#api.Queen.NAME" title="Permalink to this definition">¶</a></dt>
@@ -346,7 +346,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="api.Rook">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.</span></span><span class="sig-name descname"><span class="pre">Rook</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">board</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#api.Rook" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#api.Piece" title="api.Piece"><code class="xref py py-class docutils literal notranslate"><span class="pre">api.Piece</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#api.Piece" title="api.Piece"><code class="xref py py-class docutils literal notranslate"><span class="pre">Piece</span></code></a></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="api.Rook.NAME">
 <span class="sig-name descname"><span class="pre">NAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Rook'</span></em><a class="headerlink" href="#api.Rook.NAME" title="Permalink to this definition">¶</a></dt>
@@ -378,21 +378,11 @@
 
 
 <h3>Navigation</h3>
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pygame_chess_api</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">api module</a></li>
-</ul>
-</li>
-</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-  <li><a href="modules.html">pygame_chess_api</a><ul>
-      <li>Previous: <a href="modules.html" title="previous chapter">pygame_chess_api</a></li>
-  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -405,7 +395,7 @@
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -422,7 +412,7 @@
       &copy;2022, LupyXev.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
