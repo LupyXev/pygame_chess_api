@@ -1,6 +1,7 @@
 from api import *
 from os import listdir
 import pygame
+from pygame import image
 from time import time
 #from warnings import warn
 
@@ -109,6 +110,20 @@ class Gui:
         pygame.display.update()
 
     def generate_textures(self):
+        #moves textures
+        Move.TEXTURES = {
+            Move.TO_EMPTY_MOVE: image.load("./assets/square_of_highlight.png"),
+            Move.KILL_MOVE: image.load("./assets/square_of_kill.png"),
+            Move.SPECIAL_MOVE: image.load("./assets/square_of_special.png")
+        }
+        #check
+        Check.IN_CHECK_TEXTURE = image.load("./assets/square_of_in_check.png")
+
+        #cases textures
+        Case.BLACK_TEXTURE = image.load("assets/black_square.png")
+        Case.WHITE_TEXTURE = image.load("assets/white_square.png")
+
+        #pieces textures
         pieces_dir_path = "./assets/pieces/"
         files = listdir(pieces_dir_path)
         for f_name in files:

@@ -1,4 +1,3 @@
-from pygame import image, Surface
 from time import time
 from math import sqrt
 
@@ -20,11 +19,7 @@ class Move:
     SPECIAL_MOVE = 3 #like for castling move
     OVER_CHECK_MOVE = 4 #used to detect check situations (move where you'll kill a Check piece)
     LEADING_TO_CHECK_SITUATION_MOVE = 5
-    TEXTURES = {
-        TO_EMPTY_MOVE: image.load("./assets/square_of_highlight.png"),
-        KILL_MOVE: image.load("./assets/square_of_kill.png"),
-        SPECIAL_MOVE: image.load("./assets/square_of_special.png"),
-    }
+    TEXTURES = {} #will be written by render.py
     CASTLING_TYPE = 1
     EN_PASSANT_TYPE = 2
     def __init__(self, type: int, piece, target:tuple, special_type=None):
@@ -166,7 +161,7 @@ class Rook(Piece):
 
 class Check(Piece):
     NAME = "Check"
-    IN_CHECK_TEXTURE = image.load("./assets/square_of_in_check.png")
+    IN_CHECK_TEXTURE = None
     def __init__(self, color, pos: tuple, board):
         super().__init__(color, pos, board)
         self.invicible = True
@@ -288,8 +283,8 @@ class Pawn(Piece):
         return allowed_moves
 
 class Case:
-    BLACK_TEXTURE = image.load("assets/black_square.png")
-    WHITE_TEXTURE = image.load("assets/white_square.png")
+    BLACK_TEXTURE = None
+    WHITE_TEXTURE = None
     BLACK = 1
     WHITE = 0
     def __init__(self, square_type, content=None):
