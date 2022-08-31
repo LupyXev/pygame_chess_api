@@ -7,7 +7,7 @@ version: 2
 sphinx:
   builder: html
   configuration: conf.py
-  fail_on_warning: false
+  fail_on_warning: true
 
 # Set the version of Python and other tools you might need
 build:
@@ -19,7 +19,7 @@ build:
 sphinx:
    configuration: docs/conf.py
 
-# If using Sphinx, optionally build your docs in additional formats such as PDF
-# formats:
-#    - pdf
+python:
+   install:
+   - requirements: requirements.txt
 
