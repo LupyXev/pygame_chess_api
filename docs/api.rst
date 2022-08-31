@@ -1,4 +1,4 @@
-api module
+api module ty
 ==========
 .. automodule:: api
    :members:

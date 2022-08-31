@@ -1,9 +1,9 @@
 ==============================
-Full references
+Full references ty
 ==============================
 
 
-api module full references
+api module full references ty
 ==============================
 .. automodule:: api
     :members:
@@ -13,7 +13,7 @@ api module full references
     :special-members:
     :exclude-members: __weakref__
 
-render module full references
+render module full references ty
 ====================================
 .. automodule:: render
     :members:

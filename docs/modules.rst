@@ -1,8 +1,8 @@
-Useful references
+Useful references ty
 ====================
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 2
 
    api
    render
