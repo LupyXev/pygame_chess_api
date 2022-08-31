@@ -1,4 +1,4 @@
-render module ty
+render module
 =============
 .. automodule:: render
    :members:
