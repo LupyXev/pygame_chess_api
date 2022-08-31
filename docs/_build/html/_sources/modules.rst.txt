@@ -1,4 +1,4 @@
-Useful references4
+Useful references
 ====================
 
 .. toctree::

@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Full references &mdash; pygame_chess_api 0.0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="render module" href="render.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> pygame_chess_api
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Useful references</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Full references</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#api-module-full-references">api module full references</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#render-module-full-references">render module full references</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pygame_chess_api</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Full references</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/references.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="full-references">
+<h1>Full references<a class="headerlink" href="#full-references" title="Permalink to this heading"></a></h1>
+<section id="api-module-full-references">
+<h2>api module full references<a class="headerlink" href="#api-module-full-references" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.</span></span><span class="sig-name descname"><span class="pre">Move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">piece</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">special_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Moves will be initiated when getting piece’s allowed moves, they can also be used as argument to move a piece
+There is different types of moves</p>
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">FORBIDDEN_MOVE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">TO_EMPTY_MOVE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em></dt>
+<dd><p>A move to a empty case</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">KILL_MOVE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em></dt>
+<dd><p>A move that will kill an opponent’s piece</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">SPECIAL_MOVE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em></dt>
+<dd><p>Ex: for a castling move</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">OVER_CHECK_MOVE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em></dt>
+<dd><p>Used to detect check situations (move where you’ll kill a Check piece)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">LEADING_TO_CHECK_SITUATION_MOVE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em></dt>
+<dd><p>Used to detect check situations (move that will conduct to a Check of its own color, so it’s forbidden)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">TEXTURES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">CASTLING_TYPE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em></dt>
+<dd><p>For SPECIAL_MOVE</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">EN_PASSANT_TYPE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em></dt>
+<dd><p>For SPECIAL_MOVE</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">piece</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">special_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">type</span></span></dt>
+<dd><p>Move’s type (int)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">piece</span></span></dt>
+<dd><p>Move’s piece</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">target</span></span></dt>
+<dd><p>Move’s position target (tuple)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">special_type</span></span></dt>
+<dd><p>Special type if type==SPECIAL_MOVE</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_piece</span></span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">allowed</span></span></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">texture</span></span></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">mappingproxy({'__module__':</span> <span class="pre">'api',</span> <span class="pre">'__doc__':</span> <span class="pre">&quot;Moves</span> <span class="pre">will</span> <span class="pre">be</span> <span class="pre">initiated</span> <span class="pre">when</span> <span class="pre">getting</span> <span class="pre">piece's</span> <span class="pre">allowed</span> <span class="pre">moves,</span> <span class="pre">they</span> <span class="pre">can</span> <span class="pre">also</span> <span class="pre">be</span> <span class="pre">used</span> <span class="pre">as</span> <span class="pre">argument</span> <span class="pre">to</span> <span class="pre">move</span> <span class="pre">a</span> <span class="pre">piece\n</span>&#160;&#160;&#160; <span class="pre">There</span> <span class="pre">is</span> <span class="pre">different</span> <span class="pre">types</span> <span class="pre">of</span> <span class="pre">moves&quot;,</span> <span class="pre">'FORBIDDEN_MOVE':</span> <span class="pre">0,</span> <span class="pre">'TO_EMPTY_MOVE':</span> <span class="pre">1,</span> <span class="pre">'KILL_MOVE':</span> <span class="pre">2,</span> <span class="pre">'SPECIAL_MOVE':</span> <span class="pre">3,</span> <span class="pre">'OVER_CHECK_MOVE':</span> <span class="pre">4,</span> <span class="pre">'LEADING_TO_CHECK_SITUATION_MOVE':</span> <span class="pre">5,</span> <span class="pre">'TEXTURES':</span> <span class="pre">{},</span> <span class="pre">'CASTLING_TYPE':</span> <span class="pre">1,</span> <span class="pre">'EN_PASSANT_TYPE':</span> <span class="pre">2,</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">Move.__init__&gt;,</span> <span class="pre">'copy':</span> <span class="pre">&lt;function</span> <span class="pre">Move.copy&gt;,</span> <span class="pre">'allowed':</span> <span class="pre">&lt;property</span> <span class="pre">object&gt;,</span> <span class="pre">'texture':</span> <span class="pre">&lt;property</span> <span class="pre">object&gt;,</span> <span class="pre">'__str__':</span> <span class="pre">&lt;function</span> <span class="pre">Move.__str__&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'Move'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'Move'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'api'</span></em></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.</span></span><span class="sig-name descname"><span class="pre">Piece</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">board</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for pieces</p>
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WHITE_TEXTURE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">BLACK_TEXTURE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WHITE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">BLACK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">INT_COLOR_TO_TEXT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{0:</span> <span class="pre">'White',</span> <span class="pre">1:</span> <span class="pre">'Black'}</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">DIAGONALS_VECTORS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">((-1,</span> <span class="pre">-1),</span> <span class="pre">(1,</span> <span class="pre">-1),</span> <span class="pre">(-1,</span> <span class="pre">1),</span> <span class="pre">(1,</span> <span class="pre">1))</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">LINES_VECTORS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">((0,</span> <span class="pre">-1),</span> <span class="pre">(0,</span> <span class="pre">1),</span> <span class="pre">(-1,</span> <span class="pre">0),</span> <span class="pre">(1,</span> <span class="pre">0))</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">KNIGHT_VECTOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">((1,</span> <span class="pre">-2),</span> <span class="pre">(2,</span> <span class="pre">-1),</span> <span class="pre">(2,</span> <span class="pre">1),</span> <span class="pre">(1,</span> <span class="pre">2),</span> <span class="pre">(-1,</span> <span class="pre">2),</span> <span class="pre">(-2,</span> <span class="pre">1),</span> <span class="pre">(-2,</span> <span class="pre">-1),</span> <span class="pre">(-1,</span> <span class="pre">-2))</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">COLLISION_MOVES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(2,</span> <span class="pre">4,</span> <span class="pre">0)</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">board</span></span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">color</span></span></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">pos</span></span></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">board</span></span></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_moves_allowed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip_check_verification</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span></dt>
+<dd><p><strong>To get every piece’s moves allowed</strong> with the current Board configuration (moves allowed this current turn)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">case_allowed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">case_pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">this_move_can_kill</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_check_verification</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="api.html#api.Move" title="api.Move"><span class="pre">Move</span></a></span></span></dt>
+<dd><p>To test if this specific case is currently allowed for the piece</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">cases_allowed_around</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip_check_verification</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">cases_allowed_in_diagonals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip_check_verification</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">cases_allowed_in_line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip_check_verification</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">cases_allowed_for_knight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip_check_verification</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos_or_move</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_allowed_verif</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">call_new_turn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span></dt>
+<dd><p>To move the piece to a position returns the target position if it worked, otherwise it returns None</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">texture</span></span></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_board</span></span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">mappingproxy({'__module__':</span> <span class="pre">'api',</span> <span class="pre">'__doc__':</span> <span class="pre">'Base</span> <span class="pre">class</span> <span class="pre">for</span> <span class="pre">pieces',</span> <span class="pre">'WHITE_TEXTURE':</span> <span class="pre">None,</span> <span class="pre">'BLACK_TEXTURE':</span> <span class="pre">None,</span> <span class="pre">'WHITE':</span> <span class="pre">0,</span> <span class="pre">'BLACK':</span> <span class="pre">1,</span> <span class="pre">'INT_COLOR_TO_TEXT':</span> <span class="pre">{0:</span> <span class="pre">'White',</span> <span class="pre">1:</span> <span class="pre">'Black'},</span> <span class="pre">'DIAGONALS_VECTORS':</span> <span class="pre">((-1,</span> <span class="pre">-1),</span> <span class="pre">(1,</span> <span class="pre">-1),</span> <span class="pre">(-1,</span> <span class="pre">1),</span> <span class="pre">(1,</span> <span class="pre">1)),</span> <span class="pre">'LINES_VECTORS':</span> <span class="pre">((0,</span> <span class="pre">-1),</span> <span class="pre">(0,</span> <span class="pre">1),</span> <span class="pre">(-1,</span> <span class="pre">0),</span> <span class="pre">(1,</span> <span class="pre">0)),</span> <span class="pre">'KNIGHT_VECTOR':</span> <span class="pre">((1,</span> <span class="pre">-2),</span> <span class="pre">(2,</span> <span class="pre">-1),</span> <span class="pre">(2,</span> <span class="pre">1),</span> <span class="pre">(1,</span> <span class="pre">2),</span> <span class="pre">(-1,</span> <span class="pre">2),</span> <span class="pre">(-2,</span> <span class="pre">1),</span> <span class="pre">(-2,</span> <span class="pre">-1),</span> <span class="pre">(-1,</span> <span class="pre">-2)),</span> <span class="pre">'COLLISION_MOVES':</span> <span class="pre">(2,</span> <span class="pre">4,</span> <span class="pre">0),</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">Piece.__init__&gt;,</span> <span class="pre">'get_moves_allowed':</span> <span class="pre">&lt;function</span> <span class="pre">Piece.get_moves_allowed&gt;,</span> <span class="pre">'case_allowed':</span> <span class="pre">&lt;function</span> <span class="pre">Piece.case_allowed&gt;,</span> <span class="pre">'cases_allowed_around':</span> <span class="pre">&lt;function</span> <span class="pre">Piece.cases_allowed_around&gt;,</span> <span class="pre">'cases_allowed_in_diagonals':</span> <span class="pre">&lt;function</span> <span class="pre">Piece.cases_allowed_in_diagonals&gt;,</span> <span class="pre">'cases_allowed_in_line':</span> <span class="pre">&lt;function</span> <span class="pre">Piece.cases_allowed_in_line&gt;,</span> <span class="pre">'cases_allowed_for_knight':</span> <span class="pre">&lt;function</span> <span class="pre">Piece.cases_allowed_for_knight&gt;,</span> <span class="pre">'move':</span> <span class="pre">&lt;function</span> <span class="pre">Piece.move&gt;,</span> <span class="pre">'texture':</span> <span class="pre">&lt;property</span> <span class="pre">object&gt;,</span> <span class="pre">'copy':</span> <span class="pre">&lt;function</span> <span class="pre">Piece.copy&gt;,</span> <span class="pre">'__str__':</span> <span class="pre">&lt;function</span> <span class="pre">Piece.__str__&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'Piece'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'Piece'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'api'</span></em></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.</span></span><span class="sig-name descname"><span class="pre">Rook</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">board</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Bases: <a class="reference internal" href="api.html#api.Piece" title="api.Piece"><code class="xref py py-class docutils literal notranslate"><span class="pre">Piece</span></code></a></p>
+<p>Class for Rooks, please refer to <a class="reference internal" href="api.html#api.Piece" title="api.Piece"><code class="xref py py-class docutils literal notranslate"><span class="pre">Piece</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">NAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Rook'</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">board</span></span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_moves_allowed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip_check_verification</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'api'</span></em></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.</span></span><span class="sig-name descname"><span class="pre">Check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">board</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Bases: <a class="reference internal" href="api.html#api.Piece" title="api.Piece"><code class="xref py py-class docutils literal notranslate"><span class="pre">Piece</span></code></a></p>
+<p>Class for Checks, please refer to <a class="reference internal" href="api.html#api.Piece" title="api.Piece"><code class="xref py py-class docutils literal notranslate"><span class="pre">Piece</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">NAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Check'</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">IN_CHECK_TEXTURE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">board</span></span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">in_check_situation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hypothesis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span></dt>
+<dd><p>Detects if this Check is “in check”</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_moves_allowed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip_check_verification</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'api'</span></em></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.</span></span><span class="sig-name descname"><span class="pre">Queen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">board</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Bases: <a class="reference internal" href="api.html#api.Piece" title="api.Piece"><code class="xref py py-class docutils literal notranslate"><span class="pre">Piece</span></code></a></p>
+<p>Class for Queens, please refer to <a class="reference internal" href="api.html#api.Piece" title="api.Piece"><code class="xref py py-class docutils literal notranslate"><span class="pre">Piece</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">NAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Queen'</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">board</span></span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_moves_allowed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip_check_verification</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'api'</span></em></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.</span></span><span class="sig-name descname"><span class="pre">Bishop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">board</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Bases: <a class="reference internal" href="api.html#api.Piece" title="api.Piece"><code class="xref py py-class docutils literal notranslate"><span class="pre">Piece</span></code></a></p>
+<p>Class for Bishops, please refer to <a class="reference internal" href="api.html#api.Piece" title="api.Piece"><code class="xref py py-class docutils literal notranslate"><span class="pre">Piece</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">NAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Bishop'</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">board</span></span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_moves_allowed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip_check_verification</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'api'</span></em></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.</span></span><span class="sig-name descname"><span class="pre">Knight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">board</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Bases: <a class="reference internal" href="api.html#api.Piece" title="api.Piece"><code class="xref py py-class docutils literal notranslate"><span class="pre">Piece</span></code></a></p>
+<p>Class for Knights, please refer to <a class="reference internal" href="api.html#api.Piece" title="api.Piece"><code class="xref py py-class docutils literal notranslate"><span class="pre">Piece</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">NAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Knight'</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">board</span></span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_moves_allowed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip_check_verification</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'api'</span></em></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.</span></span><span class="sig-name descname"><span class="pre">Pawn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">board</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Bases: <a class="reference internal" href="api.html#api.Piece" title="api.Piece"><code class="xref py py-class docutils literal notranslate"><span class="pre">Piece</span></code></a></p>
+<p>Class for Pawns, please refer to <a class="reference internal" href="api.html#api.Piece" title="api.Piece"><code class="xref py py-class docutils literal notranslate"><span class="pre">Piece</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">NAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Pawn'</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">board</span></span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_moves_allowed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip_check_verification</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'api'</span></em></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.</span></span><span class="sig-name descname"><span class="pre">Case</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">square_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">BLACK_TEXTURE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WHITE_TEXTURE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">BLACK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">WHITE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">square_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">mappingproxy({'__module__':</span> <span class="pre">'api',</span> <span class="pre">'BLACK_TEXTURE':</span> <span class="pre">None,</span> <span class="pre">'WHITE_TEXTURE':</span> <span class="pre">None,</span> <span class="pre">'BLACK':</span> <span class="pre">1,</span> <span class="pre">'WHITE':</span> <span class="pre">0,</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">Case.__init__&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'Case'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'Case'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__doc__':</span> <span class="pre">None,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'api'</span></em></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">api.</span></span><span class="sig-name descname"><span class="pre">Board</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pieces_by_pos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">move_history</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cur_color_turn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents the whole game board, containing pieces and data about current and past turns</p>
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">BACK_LINE_INIT_POSITIONS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{(0,</span> <span class="pre">0):</span> <span class="pre">&lt;class</span> <span class="pre">'api.Rook'&gt;,</span> <span class="pre">(1,</span> <span class="pre">0):</span> <span class="pre">&lt;class</span> <span class="pre">'api.Knight'&gt;,</span> <span class="pre">(2,</span> <span class="pre">0):</span> <span class="pre">&lt;class</span> <span class="pre">'api.Bishop'&gt;,</span> <span class="pre">(3,</span> <span class="pre">0):</span> <span class="pre">&lt;class</span> <span class="pre">'api.Queen'&gt;,</span> <span class="pre">(4,</span> <span class="pre">0):</span> <span class="pre">&lt;class</span> <span class="pre">'api.Check'&gt;,</span> <span class="pre">(5,</span> <span class="pre">0):</span> <span class="pre">&lt;class</span> <span class="pre">'api.Bishop'&gt;,</span> <span class="pre">(6,</span> <span class="pre">0):</span> <span class="pre">&lt;class</span> <span class="pre">'api.Knight'&gt;,</span> <span class="pre">(7,</span> <span class="pre">0):</span> <span class="pre">&lt;class</span> <span class="pre">'api.Rook'&gt;}</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pieces_by_pos</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">move_history</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cur_color_turn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">mappingproxy({'__module__':</span> <span class="pre">'api',</span> <span class="pre">'__doc__':</span> <span class="pre">'Represents</span> <span class="pre">the</span> <span class="pre">whole</span> <span class="pre">game</span> <span class="pre">board,</span> <span class="pre">containing</span> <span class="pre">pieces</span> <span class="pre">and</span> <span class="pre">data</span> <span class="pre">about</span> <span class="pre">current</span> <span class="pre">and</span> <span class="pre">past</span> <span class="pre">turns',</span> <span class="pre">'BACK_LINE_INIT_POSITIONS':</span> <span class="pre">{(0,</span> <span class="pre">0):</span> <span class="pre">&lt;class</span> <span class="pre">'api.Rook'&gt;,</span> <span class="pre">(1,</span> <span class="pre">0):</span> <span class="pre">&lt;class</span> <span class="pre">'api.Knight'&gt;,</span> <span class="pre">(2,</span> <span class="pre">0):</span> <span class="pre">&lt;class</span> <span class="pre">'api.Bishop'&gt;,</span> <span class="pre">(3,</span> <span class="pre">0):</span> <span class="pre">&lt;class</span> <span class="pre">'api.Queen'&gt;,</span> <span class="pre">(4,</span> <span class="pre">0):</span> <span class="pre">&lt;class</span> <span class="pre">'api.Check'&gt;,</span> <span class="pre">(5,</span> <span class="pre">0):</span> <span class="pre">&lt;class</span> <span class="pre">'api.Bishop'&gt;,</span> <span class="pre">(6,</span> <span class="pre">0):</span> <span class="pre">&lt;class</span> <span class="pre">'api.Knight'&gt;,</span> <span class="pre">(7,</span> <span class="pre">0):</span> <span class="pre">&lt;class</span> <span class="pre">'api.Rook'&gt;},</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">Board.__init__&gt;,</span> <span class="pre">'_init_vars':</span> <span class="pre">&lt;function</span> <span class="pre">Board._init_vars&gt;,</span> <span class="pre">'get_piece_by_pos':</span> <span class="pre">&lt;function</span> <span class="pre">Board.get_piece_by_pos&gt;,</span> <span class="pre">'is_allowed_move':</span> <span class="pre">&lt;function</span> <span class="pre">Board.is_allowed_move&gt;,</span> <span class="pre">'_new_turn':</span> <span class="pre">&lt;function</span> <span class="pre">Board._new_turn&gt;,</span> <span class="pre">'move_piece':</span> <span class="pre">&lt;function</span> <span class="pre">Board.move_piece&gt;,</span> <span class="pre">'create_hypothesis_board':</span> <span class="pre">&lt;function</span> <span class="pre">Board.create_hypothesis_board&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'Board'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'Board'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'api'</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">move_history</span></span></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">cur_color_turn</span></span></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">cur_color_turn_in_check</span></span></dt>
+<dd><p>If the current playing color is in check</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">game_ended</span></span></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">winner</span></span></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">pieces_by_color</span></span></dt>
+<dd><p>2-dimensional list representing pieces by color (self.pieces_by_color[0] for white pieces and self.pieces_by_color[0] for black pieces)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">pieces_by_pos</span></span></dt>
+<dd><p>Dict representing pieces, keys are positions (tuple) and values are pieces (<a class="reference internal" href="api.html#api.Piece" title="api.Piece"><code class="xref py py-class docutils literal notranslate"><span class="pre">Piece</span></code></a>)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_piece_by_pos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">is_allowed_move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">piece</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="api.html#api.Piece" title="api.Piece"><span class="pre">Piece</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">future_pos</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">move_piece</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">piece</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos_or_move</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_allowed_verif</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">call_new_turn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span></dt>
+<dd><p>Enables you to move a piece instead of doing it with the <a class="reference internal" href="api.html#api.Piece" title="api.Piece"><code class="xref py py-class docutils literal notranslate"><span class="pre">Piece</span></code></a> obj, returns None if the move isn’t allowed</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">create_hypothesis_board</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pieces_with_pos_to_change</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span></dt>
+<dd><div class="line-block">
+<div class="line">Allows you to create hypothesis boards, an independent copy of the current Board</div>
+<div class="line">Returns another Board obj</div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="render-module-full-references">
+<h2>render module full references<a class="headerlink" href="#render-module-full-references" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">render.</span></span><span class="sig-name descname"><span class="pre">Gui</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">board</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="api.html#api.Board" title="api.Board"><span class="pre">Board</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors_managed_by_gui</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Chess</span> <span class="pre">Game'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SCREEN_SIZE</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(800,</span> <span class="pre">800)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">FPS</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class for the pygame’s gui, it will enable you to display the game and human players to move pieces</p>
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">PIECE_TYPE_NAME_TO_OBJ</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'bishop':</span> <span class="pre">&lt;class</span> <span class="pre">'api.Bishop'&gt;,</span> <span class="pre">'check':</span> <span class="pre">&lt;class</span> <span class="pre">'api.Check'&gt;,</span> <span class="pre">'knight':</span> <span class="pre">&lt;class</span> <span class="pre">'api.Knight'&gt;,</span> <span class="pre">'pawn':</span> <span class="pre">&lt;class</span> <span class="pre">'api.Pawn'&gt;,</span> <span class="pre">'queen':</span> <span class="pre">&lt;class</span> <span class="pre">'api.Queen'&gt;,</span> <span class="pre">'rook':</span> <span class="pre">&lt;class</span> <span class="pre">'api.Rook'&gt;}</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">board</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="api.html#api.Board" title="api.Board"><span class="pre">Board</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors_managed_by_gui</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">1)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Chess</span> <span class="pre">Game'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SCREEN_SIZE</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(800,</span> <span class="pre">800)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">FPS</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">colors_managed</span></span></dt>
+<dd><div class="line-block">
+<div class="line">Tuple containing the colors managed by human moves with the gui.</div>
+<div class="line">The color(s) not in this tuple/list must be managed by AI with the parameter function <cite>function_for_AIs</cite> in method <a class="reference internal" href="render.html#render.Gui.run_pygame_loop" title="render.Gui.run_pygame_loop"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run_pygame_loop()</span></code></a></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">run_pygame_loop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function_for_AIs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Run the Pygame gui loop to show and interact with the pygame window.
+The function_for_AIs must have one input: the board object
+We’ll call it when this is turn for a color that should not be managed by gui (an AI)</p>
+<p>Obviously the move method called by your AI must be part of the given Board (Board.move_piece or a Piece.move)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_mouse_pos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">draw_board</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">generate_textures</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">mouse_left_clicked</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">mappingproxy({'__module__':</span> <span class="pre">'render',</span> <span class="pre">'__doc__':</span> <span class="pre">&quot;Class</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">pygame's</span> <span class="pre">gui,</span> <span class="pre">it</span> <span class="pre">will</span> <span class="pre">enable</span> <span class="pre">you</span> <span class="pre">to</span> <span class="pre">display</span> <span class="pre">the</span> <span class="pre">game</span> <span class="pre">and</span> <span class="pre">human</span> <span class="pre">players</span> <span class="pre">to</span> <span class="pre">move</span> <span class="pre">pieces&quot;,</span> <span class="pre">'PIECE_TYPE_NAME_TO_OBJ':</span> <span class="pre">{'check':</span> <span class="pre">&lt;class</span> <span class="pre">'api.Check'&gt;,</span> <span class="pre">'queen':</span> <span class="pre">&lt;class</span> <span class="pre">'api.Queen'&gt;,</span> <span class="pre">'rook':</span> <span class="pre">&lt;class</span> <span class="pre">'api.Rook'&gt;,</span> <span class="pre">'bishop':</span> <span class="pre">&lt;class</span> <span class="pre">'api.Bishop'&gt;,</span> <span class="pre">'knight':</span> <span class="pre">&lt;class</span> <span class="pre">'api.Knight'&gt;,</span> <span class="pre">'pawn':</span> <span class="pre">&lt;class</span> <span class="pre">'api.Pawn'&gt;},</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">Gui.__init__&gt;,</span> <span class="pre">'run_pygame_loop':</span> <span class="pre">&lt;function</span> <span class="pre">Gui.run_pygame_loop&gt;,</span> <span class="pre">'get_mouse_pos':</span> <span class="pre">&lt;function</span> <span class="pre">Gui.get_mouse_pos&gt;,</span> <span class="pre">'draw_board':</span> <span class="pre">&lt;function</span> <span class="pre">Gui.draw_board&gt;,</span> <span class="pre">'generate_textures':</span> <span class="pre">&lt;function</span> <span class="pre">Gui.generate_textures&gt;,</span> <span class="pre">'mouse_left_clicked':</span> <span class="pre">&lt;function</span> <span class="pre">Gui.mouse_left_clicked&gt;,</span> <span class="pre">'mouse_released':</span> <span class="pre">&lt;function</span> <span class="pre">Gui.mouse_released&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'Gui'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'Gui'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'render'</span></em></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">mouse_released</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="render.html" class="btn btn-neutral float-left" title="render module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, LupyXev.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

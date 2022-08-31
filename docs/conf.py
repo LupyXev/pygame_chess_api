@@ -11,7 +11,7 @@ import sys
 sys.path.insert(0, os.path.abspath('..'))
 
 
-project = 'pygame_chess_api'
+project = 'pygame_chess_api_project'
 copyright = '2022, LupyXev'
 author = 'LupyXev'
 release = '0.0.1'
