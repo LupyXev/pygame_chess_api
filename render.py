@@ -3,9 +3,9 @@ from os import listdir
 import pygame
 from pygame import image
 from time import time
-#from warnings import warn
 
 class Gui:
+    '''Class for the pygame's gui, it will enable you to display the game and human players to move pieces'''
     PIECE_TYPE_NAME_TO_OBJ = {"check": Check, "queen": Queen, "rook": Rook, "bishop": Bishop, "knight": Knight, "pawn": Pawn}
 
     def __init__(self, board:Board, colors_managed_by_gui=(Piece.WHITE, Piece.BLACK), window_title="Chess Game", SCREEN_SIZE=(800, 800), FPS=60, verbose=1):
@@ -22,15 +22,18 @@ class Gui:
         if type(colors_managed_by_gui) not in (tuple, list):
             raise ValueError("colors_managed_by_gui is not a tuple or a list")
         self.colors_managed = colors_managed_by_gui
+        '''
+        | Tuple containing the colors managed by human moves with the gui.
+        | The color(s) not in this tuple/list must be managed by AI with the parameter function `function_for_AIs` in method :meth:`run_pygame_loop`'''
         self.verbose = verbose #0, 1, or 2
 
         self.generate_textures()
     
     def run_pygame_loop(self, function_for_AIs=None):
         '''
-        Running the Pygame gui loop to show and interact with the pygame window.
+        Run the Pygame gui loop to show and interact with the pygame window.
         The function_for_AIs must have one input: the board object
-        We'll call it when this is turn for a color that should not be managed by gui
+        We'll call it when this is turn for a color that should not be managed by gui (an AI)
 
         Obviously the move method called by your AI must be part of the given Board (Board.move_piece or a Piece.move)
         '''

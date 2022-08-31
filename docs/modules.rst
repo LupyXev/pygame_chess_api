@@ -1,7 +1,8 @@
-pygame_chess_api
-================
+Useful references
+====================
 
 .. toctree::
    :maxdepth: 4
 
    api
+   render

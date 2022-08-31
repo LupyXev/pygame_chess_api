@@ -1,7 +1,7 @@
 render module
 =============
-
 .. automodule:: render
    :members:
-   :undoc-members:
    :show-inheritance:
+   :special-members:
+   :exclude-members: __weakref__

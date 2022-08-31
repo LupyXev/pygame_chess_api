@@ -12,11 +12,12 @@ Welcome to pygame_chess_api's documentation!
    
    modules
 
+   references
+
 
 
 Indices and tables
 ==================
 
-* :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`
+* :ref:`genindex`
