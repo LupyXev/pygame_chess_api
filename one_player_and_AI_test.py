@@ -1,5 +1,5 @@
 import pygame
-from api import Board, Piece
+from api import Board, Piece, Bishop
 from render import Gui
 
 def random_function_for_ai(board:Board):
@@ -11,6 +11,10 @@ def random_function_for_ai(board:Board):
         allowed_moves = random_piece.get_moves_allowed()
     
     random_move = choice(random_piece.get_moves_allowed())
+    
+    if random_move.special_type == random_move.TO_PROMOTE_TYPE: #if we have to specify a promotion we promote it to a Bishop
+        random_piece.promote_class_wanted = Bishop
+    
     random_piece.move(random_move)
 
 if __name__ == "__main__":

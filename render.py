@@ -39,7 +39,7 @@ class Gui:
         '''
         self.screen = pygame.display.set_mode(self.SCREEN_SIZE)
         pygame.display.set_caption(self.window_title)
-        clock = pygame.time.Clock()
+        self.clock = pygame.time.Clock()
 
         stop_loop = False
         while not stop_loop:
@@ -64,7 +64,7 @@ class Gui:
                     raise BaseException("function_for_AIs didn't changed the turn's color/ended turn, please verify that you're moving a piece with your AI")
                 self.need_screen_update = True
             
-            clock.tick(self.FPS)
+            self.clock.tick(self.FPS)
     
     def get_mouse_pos(self):
         mouse_pos = pygame.mouse.get_pos()
@@ -144,6 +144,37 @@ class Gui:
                 print("Warning bad file name piece color", f_name)
         self.need_screen_update = True
         if self.verbose >= 1: print("loaded gui textures")
+    
+    def choose_a_pawn_promote(self, color:int):
+        print("Please choose the Piece to promote the Pawn")
+        #drawing promote pieces
+        classes_name = ("queen", "rook", "bishop", "knight")
+        classes = (Queen, Rook, Bishop, Knight)
+        textures = []
+        for c in classes_name:
+            if color == Piece.WHITE:
+                cur_texture = image.load(f"./assets/pieces/white_{c}.png")
+            else:
+                cur_texture = image.load(f"./assets/pieces/white_{c}.png")
+            cur_texture = pygame.transform.smoothscale(cur_texture, tuple([s*2 for s in self.SQUARE_SIZE]))
+            textures.append(cur_texture)
+
+        for i in range(len(textures)):
+            self.screen.blit(textures[i], (0 + i*2*self.SQUARE_SIZE[0], self.SQUARE_SIZE[1]*3))
+        
+        while True:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    return None
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    mouse_presses = pygame.mouse.get_pressed()
+                    if mouse_presses[0] == True: #left click
+                        mouse_pos = self.get_mouse_pos()
+                        if 3 <= mouse_pos[1] <= 4:
+                            return classes[mouse_pos[0]//2]
+                
+            pygame.display.update()
+            self.clock.tick(self.FPS)
 
     def mouse_left_clicked(self):
         if self.board.game_ended:
@@ -169,6 +200,12 @@ class Gui:
         self.kill_cases = []
         if self.mouse_piece_holding:
             mouse_pos = self.get_mouse_pos()
+            if isinstance(self.mouse_piece_holding, Pawn) and ((self.mouse_piece_holding.color == Piece.WHITE and mouse_pos[1] == 0) or (self.mouse_piece_holding.color == Piece.BLACK and mouse_pos[1] == 7)):
+                allowed = self.board.is_allowed_move(self.mouse_piece_holding, mouse_pos)
+                if allowed:
+                    wanted_class = self.choose_a_pawn_promote(self.mouse_piece_holding.color)
+                    self.mouse_piece_holding.promote_class_wanted = wanted_class
+
             self.board.move_piece(self.mouse_piece_holding, mouse_pos) #will perform movement only if allowed
             self.mouse_piece_holding = None
 

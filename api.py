@@ -1,5 +1,6 @@
 from time import time
 from math import sqrt
+from warnings import warn
 
 '''
 French pieces' name to english:
@@ -22,7 +23,7 @@ class Move:
     KILL_MOVE = 2
     '''A move that will kill an opponent's piece'''
     SPECIAL_MOVE = 3 #like for castling move
-    '''Ex: for a castling move'''
+    '''Ex: for a castling move or a Pawn promoting move (in this case you should specify the wanted class as Pawn attribute, please refer to :class:`Pawn`)'''
     OVER_CHECK_MOVE = 4 
     '''Used to detect check situations (move where you'll kill a Check piece)'''
     LEADING_TO_CHECK_SITUATION_MOVE = 5
@@ -32,6 +33,8 @@ class Move:
     '''For SPECIAL_MOVE'''
     EN_PASSANT_TYPE = 2
     '''For SPECIAL_MOVE'''
+    TO_PROMOTE_TYPE = 3
+    '''special_type if it's a Pawn promotion move. Be careful, the Move type won't be SPECIAL_MOVE for promotions. To specify promotion, refer to :class:`Pawn`'''
     def __init__(self, type: int, piece, target:tuple, special_type=None):
         self.type = type
         '''Move's type (int)'''
@@ -40,7 +43,7 @@ class Move:
         self.target = target #will be (-1, -1) if type is FORBIDDEN_MOVE
         '''Move's position target (tuple)'''
         self.special_type = special_type
-        '''Special type if type==SPECIAL_MOVE'''
+        '''Special type if type==SPECIAL_MOVE or if it's a Pawn promotion move (value would be TO_PROMOTE_TYPE)'''
     
     def copy(self, new_piece):
         return self.__class__(self.type, new_piece, self.target, self.special_type)
@@ -54,7 +57,7 @@ class Move:
         return self.TEXTURES[self.type]
     
     def __str__(self):
-        return f"Move of piece {self.piece} to {self.target} (type : {self.type})"    
+        return f"Move of piece {self.piece} to {self.target} type : {self.type}, special_type: {self.special_type}"
 
 
 class Piece:
@@ -95,6 +98,9 @@ class Piece:
             if self.board.check_pieces[self.board.cur_color_turn].in_check_situation(hypothesis=hypo_board):
                 return Move(Move.LEADING_TO_CHECK_SITUATION_MOVE, self, (-1, -1)) #not allowed because would be in check situation
             return None
+        
+        to_promotion_pawn = (isinstance(self, Pawn) and ((self.color == self.WHITE and case_pos[1] == 0) or (self.color == self.BLACK and case_pos[1] == 7)))
+        special_type = Move.TO_PROMOTE_TYPE if to_promotion_pawn else None
 
         if case_pos in self.board.pieces_by_pos:
             cur_piece = self.board.pieces_by_pos[case_pos]
@@ -102,7 +108,7 @@ class Piece:
                 if cur_piece.invicible == False: #invicible means that this is a Check piece
                     verification = verify_check(skip_check_verification)
                     if verification: return verification
-                    return Move(Move.KILL_MOVE, self, case_pos) #there is collision
+                    return Move(Move.KILL_MOVE, self, case_pos,  special_type=special_type) #there is collision
                 else:
                     verification = verify_check(skip_check_verification)
                     if verification: return verification
@@ -112,7 +118,7 @@ class Piece:
         else:
             verification = verify_check(skip_check_verification)
             if verification: return verification
-            return Move(Move.TO_EMPTY_MOVE, self, case_pos) #no collision
+            return Move(Move.TO_EMPTY_MOVE, self, case_pos, special_type=special_type) #no collision
 
     def cases_allowed_around(self, skip_check_verification=False):
         cases_around_list = []
@@ -277,6 +283,11 @@ class Pawn(Piece):
     NAME = "Pawn"
     def __init__(self, color, pos: tuple, board):
         super().__init__(color, pos, board)
+        self.promote_class_wanted = None
+        '''
+        | This attribute stores the piece class that will be used if the Pawn promotes
+        | It can be changed whenever in the game, if no value is given we'll warn it and use a Queen to promote the Pawn
+        '''
     
     def get_moves_allowed(self, skip_check_verification=False): #returns every move allowed
         allowed_moves = []
@@ -397,10 +408,14 @@ class Board:
             if piece.color == self.cur_color_turn:
                 if len(piece.get_moves_allowed()) > 0:
                     return False
-        #no piece can move, this is a checkmate situation
+        #no piece can move, this is a checkmate or an ending in a stalemate situation
         self.game_ended = True
-        self.winner = 1 - self.cur_color_turn
-        print(f"checkmate! color {self.winner} won!")
+        if self.cur_color_turn_in_check:
+            self.winner = 1 - self.cur_color_turn
+            print(f"Checkmate! color {self.winner} won!")
+        else:
+            self.winner = None
+            print("Pat! Nobody won!")
         return True
 
     def move_piece(self, piece, pos_or_move:tuple or Move, skip_allowed_verif=False, call_new_turn=True) -> None or tuple:
@@ -443,7 +458,21 @@ class Board:
                 
             self.pieces_by_pos[pos] = piece
             
-            if call_new_turn: is_checkmate = self._new_turn()
+            if call_new_turn:
+                #if we must make a Pawn promote
+                if isinstance(piece, Pawn) and ((piece.color == Piece.WHITE and piece.pos[1] == 0) or (piece.color == Piece.BLACK and piece.pos[1] == 7)):
+                    if self.verbose >= 1: print(f"{piece} upgrading!")
+                    new_piece_class = piece.promote_class_wanted
+                    if new_piece_class is None:
+                        warn(f"No promote_class_wanted for {piece}, you should set the pawn's attribute promote_class_wanted before moving it\nWe'll use a Queen to promote it")
+                        new_piece_class = Queen
+                    new_piece = new_piece_class(piece.color, piece.pos, self)
+                    self.pieces_by_pos[pos] = new_piece
+                    self.pieces_by_color[piece.color].append(new_piece)
+                    #deleting the pawn
+                    self.pieces_by_color[piece.color].remove(piece)
+
+                is_checkmate = self._new_turn()
             return pos
         else:
             if self.verbose >= 1: print(f"Move of piece {piece} to {pos} isn't allowed")
