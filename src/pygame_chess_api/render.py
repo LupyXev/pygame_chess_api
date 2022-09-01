@@ -1,10 +1,12 @@
-from .api import *
 import os
+import sys
+__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+sys.path.append(os.path.dirname(__location__))
+
+from pygame_chess_api.api import *
 import pygame
 from pygame import image
 from time import time
-
-__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
 class Gui:
     '''Class for the pygame's gui, it will enable you to display the game and human players to move pieces'''

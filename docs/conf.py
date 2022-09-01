@@ -8,7 +8,7 @@
 
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../pygame_chess_api/src'))
+sys.path.insert(0, os.path.abspath('../src/pygame_chess_api'))
 
 
 project = 'pygame_chess_api_project'

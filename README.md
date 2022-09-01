@@ -19,6 +19,7 @@ If it doesn't work, feel free to open an issue
 Getting Started
 ========================
 To get started you can check the *Quickstart* on the documentation (https://pygame-chess-api.readthedocs.io/)
+
 To run a quick test and see what working witch pygame_chess_api can look like you can also download examples on the GitHub Repository
 
 **Please check the Documentation at https://pygame-chess-api.readthedocs.io/ to access to Quickstart, References, etc**
