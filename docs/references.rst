@@ -11,7 +11,7 @@ api module full references
     :undoc-members:
     :noindex:
     :special-members:
-    :exclude-members: __weakref__
+    :exclude-members: __weakref__, __dict__, __annotations__, __module__ 
 
 render module full references
 ====================================
@@ -21,4 +21,4 @@ render module full references
     :noindex:
     :show-inheritance:
     :special-members:
-    :exclude-members: __weakref__
+    :exclude-members: __weakref__, __dict__, __annotations__, __module__ 
