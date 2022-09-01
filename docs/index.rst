@@ -23,3 +23,8 @@ Indices and tables
 
 * :ref:`search`
 * :ref:`genindex`
+
+Useful links
+========================
+* PyPi Project: https://pypi.org/project/pygame-chess-api/
+* GitHub Repository: https://github.com/LupyXev/pygame_chess_api
