@@ -7,8 +7,8 @@ A quick example for a 2-player game (no AI)
 .. code-block:: python
 
     import pygame
-    from api import Board
-    from render import Gui
+    from pygame_chess_api.api import Board
+    from pygame_chess_api.render import Gui
 
     pygame.init()
 
@@ -22,8 +22,8 @@ A quick example for a 1-player game (with one AI)
 .. code-block:: python
 
     import pygame
-    from api import Board, Bishop
-    from render import Gui
+    from pygame_chess_api.api import Board, Bishop
+    from pygame_chess_api.render import Gui
     from random import choice
 
     def function_for_ai(board:Board):

@@ -1,3 +1,6 @@
 __pycache__
 .vscode
 _build
+dist
+test_virtualenv
+*.egg-info

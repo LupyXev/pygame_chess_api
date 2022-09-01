@@ -1,6 +1,6 @@
 import pygame
-from api import Board, Piece, Bishop
-from render import Gui
+from pygame_chess_api.api import Board, Piece, Bishop
+from pygame_chess_api.render import Gui
 
 def random_function_for_ai(board:Board):
     from random import choice

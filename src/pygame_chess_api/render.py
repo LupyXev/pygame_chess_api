@@ -1,12 +1,15 @@
-from api import *
-from os import listdir
+from .api import *
+import os
 import pygame
 from pygame import image
 from time import time
 
+__location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
+
 class Gui:
     '''Class for the pygame's gui, it will enable you to display the game and human players to move pieces'''
     PIECE_TYPE_NAME_TO_OBJ = {"check": Check, "queen": Queen, "rook": Rook, "bishop": Bishop, "knight": Knight, "pawn": Pawn}
+    ASSETS_FOLDER = os.path.join(__location__, 'assets')
 
     def __init__(self, board:Board, colors_managed_by_gui=(Piece.WHITE, Piece.BLACK), window_title="Chess Game", SCREEN_SIZE=(800, 800), FPS=60, verbose=1):
         self.FPS = FPS
@@ -115,33 +118,29 @@ class Gui:
     def generate_textures(self):
         #moves textures
         Move.TEXTURES = {
-            Move.TO_EMPTY_MOVE: image.load("./assets/square_of_highlight.png"),
-            Move.KILL_MOVE: image.load("./assets/square_of_kill.png"),
-            Move.SPECIAL_MOVE: image.load("./assets/square_of_special.png")
+            Move.TO_EMPTY_MOVE: image.load(os.path.join(self.ASSETS_FOLDER, "square_of_highlight.png")),
+            Move.KILL_MOVE: image.load(os.path.join(self.ASSETS_FOLDER, "square_of_kill.png")),
+            Move.SPECIAL_MOVE: image.load(os.path.join(self.ASSETS_FOLDER, "square_of_special.png"))
         }
         #check
-        Check.IN_CHECK_TEXTURE = image.load("./assets/square_of_in_check.png")
+        Check.IN_CHECK_TEXTURE = image.load(os.path.join(self.ASSETS_FOLDER, "square_of_in_check.png"))
 
         #cases textures
-        Case.BLACK_TEXTURE = image.load("assets/black_square.png")
-        Case.WHITE_TEXTURE = image.load("assets/white_square.png")
+        Case.BLACK_TEXTURE = image.load(os.path.join(self.ASSETS_FOLDER, "black_square.png"))
+        Case.WHITE_TEXTURE = image.load(os.path.join(self.ASSETS_FOLDER, "white_square.png"))
 
         #pieces textures
-        pieces_dir_path = "./assets/pieces/"
-        files = listdir(pieces_dir_path)
-        for f_name in files:
-            color = f_name[:5]
-            type_name = f_name[6:-4] #-4 bc .png has a len of 4
-            type = self.PIECE_TYPE_NAME_TO_OBJ[type_name]
-            texture = image.load(pieces_dir_path + f_name)
-            texture = pygame.transform.smoothscale(texture, self.SQUARE_SIZE)
-            if self.verbose >= 2: print("adding", f_name, "texture")
-            if color == "white":
-                type.WHITE_TEXTURE = texture
-            elif color == "black":
-                type.BLACK_TEXTURE = texture
-            else:
-                print("Warning bad file name piece color", f_name)
+        pieces_dir_path = self.ASSETS_FOLDER
+        for cur_class_name, cur_class in self.PIECE_TYPE_NAME_TO_OBJ.items():
+            for color in (Piece.WHITE, Piece.BLACK):
+                f_name = Piece.INT_COLOR_TO_TEXT[color].lower() + "_" + cur_class_name + ".png"
+                texture = image.load(os.path.join(pieces_dir_path, f_name))
+                texture = pygame.transform.smoothscale(texture, self.SQUARE_SIZE)
+                if self.verbose >= 2: print("adding", f_name, "texture")
+                if color == Piece.WHITE:
+                    cur_class.WHITE_TEXTURE = texture
+                else:
+                    cur_class.BLACK_TEXTURE = texture
         self.need_screen_update = True
         if self.verbose >= 1: print("loaded gui textures")
     
@@ -153,9 +152,9 @@ class Gui:
         textures = []
         for c in classes_name:
             if color == Piece.WHITE:
-                cur_texture = image.load(f"./assets/pieces/white_{c}.png")
+                cur_texture = image.load(os.path.join(self.ASSETS_FOLDER, f"pieces/white_{c}.png"))
             else:
-                cur_texture = image.load(f"./assets/pieces/white_{c}.png")
+                cur_texture = image.load(os.path.join(self.ASSETS_FOLDER, f"pieces/white_{c}.png"))
             cur_texture = pygame.transform.smoothscale(cur_texture, tuple([s*2 for s in self.SQUARE_SIZE]))
             textures.append(cur_texture)
 
