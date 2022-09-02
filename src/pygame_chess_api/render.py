@@ -184,7 +184,7 @@ class Gui:
 
         mouse_pos = self.get_mouse_pos()
         piece_to_hold = self.board.get_piece_by_pos(mouse_pos)
-        if piece_to_hold.color != self.board.cur_color_turn or piece_to_hold.color not in self.colors_managed:
+        if not piece_to_hold or piece_to_hold.color != self.board.cur_color_turn or piece_to_hold.color not in self.colors_managed:
             return
 
         self.mouse_piece_holding = piece_to_hold
