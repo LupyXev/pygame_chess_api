@@ -154,9 +154,9 @@ class Gui:
         textures = []
         for c in classes_name:
             if color == Piece.WHITE:
-                cur_texture = image.load(os.path.join(self.ASSETS_FOLDER, f"pieces/white_{c}.png"))
+                cur_texture = image.load(os.path.join(self.ASSETS_FOLDER, f"white_{c}.png"))
             else:
-                cur_texture = image.load(os.path.join(self.ASSETS_FOLDER, f"pieces/white_{c}.png"))
+                cur_texture = image.load(os.path.join(self.ASSETS_FOLDER, f"white_{c}.png"))
             cur_texture = pygame.transform.smoothscale(cur_texture, tuple([s*2 for s in self.SQUARE_SIZE]))
             textures.append(cur_texture)
 

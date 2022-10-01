@@ -62,7 +62,8 @@ class Move:
 
 class Piece:
     '''Base class for pieces'''
-    WHITE_TEXTURE, BLACK_TEXTURE = None, None #will be used only in childs
+    WHITE_TEXTURE, BLACK_TEXTURE = None, None #will be used only in children
+    SCORE_VALUE = 0 #will be used in children
     WHITE, BLACK = 0, 1
     INT_COLOR_TO_TEXT = {0: "White", 1: "Black"}
     DIAGONALS_VECTORS = ((-1, -1), (1, -1), (-1, 1), (1, 1))
@@ -181,6 +182,8 @@ class Piece:
 class Rook(Piece):
     '''Class for Rooks, please refer to :class:`Piece`'''
     NAME = "Rook"
+    SCORE_VALUE = 5
+    '''Value for score evaluation'''
     def __init__(self, color, pos: tuple, board):
         super().__init__(color, pos, board)
     
@@ -254,6 +257,8 @@ class Check(Piece):
 class Queen(Piece):
     '''Class for Queens, please refer to :class:`Piece`'''
     NAME = "Queen"
+    SCORE_VALUE = 10
+    '''Value for score evaluation'''
     def __init__(self, color, pos: tuple, board):
         super().__init__(color, pos, board)
     
@@ -263,6 +268,8 @@ class Queen(Piece):
 class Bishop(Piece):
     '''Class for Bishops, please refer to :class:`Piece`'''
     NAME = "Bishop"
+    SCORE_VALUE = 3
+    '''Value for score evaluation'''
     def __init__(self, color, pos: tuple, board):
         super().__init__(color, pos, board)
     
@@ -272,6 +279,8 @@ class Bishop(Piece):
 class Knight(Piece):
     '''Class for Knights, please refer to :class:`Piece`'''
     NAME = "Knight"
+    SCORE_VALUE = 3
+    '''Value for score evaluation'''
     def __init__(self, color, pos: tuple, board):
         super().__init__(color, pos, board)
     
@@ -281,6 +290,8 @@ class Knight(Piece):
 class Pawn(Piece):
     '''Class for Pawns, please refer to :class:`Piece`'''
     NAME = "Pawn"
+    SCORE_VALUE = 1
+    '''Value for score evaluation'''
     def __init__(self, color, pos: tuple, board):
         super().__init__(color, pos, board)
         self.promote_class_wanted = None
@@ -336,6 +347,7 @@ class Board:
     BACK_LINE_INIT_POSITIONS = {(0, 0): Rook, (1, 0): Knight, (2, 0): Bishop,
         (3, 0): Queen, (4, 0): Check, (5, 0): Bishop,
         (6, 0): Knight, (7, 0): Rook} #uses 0 as y back line
+    COLORS = (Piece.WHITE, Piece.BLACK)
     
     def __init__(self, pieces_by_pos=None, move_history=[], cur_color_turn=Case.WHITE, verbose=1):
         self.verbose = verbose
@@ -374,6 +386,16 @@ class Board:
         else:
             self.pieces_by_pos = pieces_by_pos
             self.hypothesis_board = True
+    
+    def score_evaluation(self) -> dict:
+        '''Returns the current score evaluation for each color 
+        | (basic calculation with a static value for each piece type)'''
+        scores = {self.COLORS[0]: 0, self.COLORS[1]: 0}
+        for c in self.COLORS:
+            for p in self.pieces_by_color[c]:
+                scores[c] += p.SCORE_VALUE
+        
+        return scores
     
     def _init_vars(self):
         '''Used to init self.check_pieces and self.pieces_by_color (used when initiating a new obj or hypothesis)'''

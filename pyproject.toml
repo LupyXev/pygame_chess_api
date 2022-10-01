@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pygame_chess_api"
-version = "0.2.4"
+version = "0.2.7"
 authors = [
   { name="LupyXev", email="lupyxev@protonmail.com" },
 ]
